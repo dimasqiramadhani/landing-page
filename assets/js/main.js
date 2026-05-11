@@ -24,3 +24,41 @@ document.addEventListener('DOMContentLoaded', function() {
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
+
+// Typewriter effect
+(function() {
+    var texts = ['Security Engineer', 'Python Developer'];
+    var el = document.querySelector('.tagline');
+    if (!el) return;
+
+    var prefix = '$ whoami → ';
+    var current = 0;
+    var charIndex = 0;
+    var deleting = false;
+    var pauseTime = 1800;
+    var typeSpeed = 80;
+    var deleteSpeed = 40;
+
+    function type() {
+        var text = texts[current];
+        if (!deleting) {
+            el.textContent = prefix + text.slice(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === text.length) {
+                deleting = true;
+                setTimeout(type, pauseTime);
+                return;
+            }
+        } else {
+            el.textContent = prefix + text.slice(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                deleting = false;
+                current = (current + 1) % texts.length;
+            }
+        }
+        setTimeout(type, deleting ? deleteSpeed : typeSpeed);
+    }
+
+    setTimeout(type, 800);
+})();
