@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dimasqi Ramadhani · Security Engineer</title>
+    <meta name="description" content="Security Engineer focused on Detection Engineering, Red Team, Breach & Attack Simulation, and Adversary Simulation.">
+    <meta name="author" content="Dimasqi Ramadhani">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dimasqi Ramadhani · Security Engineer">
+    <meta property="og:description" content="Security Engineer focused on Detection Engineering, Red Team, BAS, and Adversary Simulation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimasqiramadhani.com">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg viewBox='0 0 90 90' xmlns='http://www.w3.org/2000/svg'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0%25' stop-color='%2334d399'/><stop offset='100%25' stop-color='%2310b981'/></linearGradient></defs><path d='M45 8 L75 20 L75 44 Q75 68 45 78 Q15 68 15 44 L15 20 Z' fill='url(%23g)'/><path d='M37 46 L43 52 L56 38' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Theme init (prevent flash) -->
+    <script>
+        (function() {
+            var cookie = document.cookie.match(/theme=([^;]+)/);
+            var saved = (cookie ? cookie[1] : null) || localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+<body>
+
+    <!-- Main Card -->
+    <main class="card">
+
+        <!-- Theme Toggle -->
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+            <i class="fa-solid fa-sun icon-sun"></i>
+            <i class="fa-solid fa-moon icon-moon"></i>
+        </button>
+
+        <!-- Status Badge -->
+        <div class="status-badge">
+            <span class="status-dot"></span>
+            Open to opportunities
+        </div>
+
+        <!-- Avatar -->
+        <div class="avatar">
+            <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="shield-grad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#34d399"/>
+                        <stop offset="100%" stop-color="#10b981"/>
+                    </linearGradient>
+                </defs>
+                <path d="M45 8 L75 20 L75 44 Q75 68 45 78 Q15 68 15 44 L15 20 Z" fill="url(#shield-grad)"/>
+                <path d="M37 46 L43 52 L56 38" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <!-- Identity -->
+        <h1 class="name">Dimasqi Ramadhani</h1>
+        <p class="tagline">$ whoami → Security Engineer</p>
+
+        <!-- Bio -->
+        <p class="bio">
+            Focused on Detection Engineering, Red Team operations,
+            Breach &amp; Attack Simulation, and Adversary Simulation.
+            Building defenses by thinking like an attacker.
+        </p>
+
+        <hr class="divider">
+
+        <!-- Navigation Links -->
+        <nav class="links" aria-label="Profile links">
+            <a href="https://portfolio.dimasqiramadhani.com" class="link-btn link-btn-primary">
+                <i class="fa-solid fa-folder-open"></i>
+                <span>View Portfolio</span>
+            </a>
+            <div class="social-row">
+                <span class="social-label">or contact directly</span>
+                <div class="social-icons">
+                    <a href="https://github.com/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://wa.me/6282254331579" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="WhatsApp">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="mailto:dimasqiramadhani@gmail.com" class="link-btn" aria-label="Email">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Skill Tags -->
+        <div class="skills" aria-label="Skills">
+            <span class="skill-tag">Detection Engineering</span>
+            <span class="skill-tag">Red Team</span>
+            <span class="skill-tag">BAS</span>
+            <span class="skill-tag">MITRE ATT&amp;CK</span>
+            <span class="skill-tag">Wazuh</span>
+            <span class="skill-tag">Elastic</span>
+            <span class="skill-tag">SIEM</span>
+            <span class="skill-tag">Adversary Simulation</span>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <span>dimasqiramadhani.com</span>
+        <span class="footer-sep">·</span>
+        <span>Indonesia</span>
+        <span class="footer-sep">·</span>
+        <span id="year"></span>
+    </footer>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
