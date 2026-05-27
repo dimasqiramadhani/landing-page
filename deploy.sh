@@ -24,5 +24,5 @@ echo "[2/2] Done!"
 
 echo ""
 echo "======================================"
-echo "  Deploy selesai!"
+echo "  Deploy complete!"
 echo "======================================"
