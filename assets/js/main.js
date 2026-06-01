@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!statNums.length) return;
 
         // Index 0: Current projects (threshold 10)
-        if (statNums[0]) statNums[0].textContent = fmt(data.projects, 10);
+        if (statNums[0]) statNums[0].textContent = data.projects < 10 ? String(data.projects) : (Math.floor(data.projects / 10) * 10) + '+';
 
         // Index 1: Focus areas — static, dibiarkan
         
