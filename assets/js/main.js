@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Index 1: Focus areas — static, dibiarkan
         
         // Index 2: Core technologies / skills (threshold 20)
-        if (statNums[2]) statNums[2].textContent = data.skills % 10 === 0 ? String(data.skills) : (Math.floor(data.skills / 10) * 10) + '+';
+        if (statNums[2]) statNums[2].textContent = data.skills < 10 ? String(data.skills) : (data.skills % 10 === 0 ? String(data.skills) : (Math.floor(data.skills / 10) * 10) + '+');
 
         // Index 3: Years experience (threshold 2)
         if (statNums[3]) {
             var yr = data.experience_years < 1 ? 1 : data.experience_years;
-            statNums[3].textContent = data.experience_months % 12 === 0 ? String(data.experience_years) : data.experience_years + '+';
+            statNums[3].textContent = data.experience_months % 12 === 0 ? String(Math.max(1, data.experience_years)) : Math.max(1, data.experience_years) + '+';
         }
     }
 
