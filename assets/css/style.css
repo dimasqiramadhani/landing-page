@@ -1,6 +1,6 @@
 /* ============================================
-   Landing Page — Dimasqi Ramadhani
-   Sidebar Rail layout. No-scroll (100dvh + clamp).
+   Landing Page - Dimasqi Ramadhani
+   Sidebar Rail layout. No scroll (100dvh + clamp).
    Consistent with cyberfolio-cms design system.
    ============================================ */
 
@@ -583,26 +583,22 @@ body::after {
         grid-template-rows: 1fr auto;
         max-width: 480px;
     }
-
     .content {
         order: 1;
         text-align: center;
         align-items: center;
-        padding: clamp(1.5rem, 4vh, 2.25rem) clamp(1.25rem, 5vw, 2rem) clamp(1rem, 2.5vh, 1.5rem);
+        padding: clamp(1rem, 3vh, 1.5rem) clamp(1.25rem, 5vw, 2rem) clamp(1rem, 3vh, 1.5rem);
     }
-
     .bio { margin-left: auto; margin-right: auto; }
     .skills { justify-content: center; }
-
-    /* Tampilkan foto di atas konten pada mobile */
     .mobile-photo {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 80px;
-        height: 80px;
+        width: 110px;
+        height: 110px;
         border-radius: 50%;
-        border: 2px solid var(--accent);
+        border: 2px solid var(--border);
         background: var(--bg-card-hover);
         overflow: hidden;
         margin-bottom: 1rem;
@@ -644,6 +640,40 @@ body::after {
         width: 1px;
         height: 30px;
         margin: 0 2px;
+    }
+
+    .copyright { display: none; }
+    .status-badge {
+        font-size: 0.62rem;
+        padding: 0.25rem 0.7rem;
+    }
+
+    .name {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.75rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .bio {
+        font-size: 0.82rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn-portfolio {
+        font-size: 0.82rem;
+        padding: 0.65rem 1.4rem;
+    }
+
+    .skill-tag {
+        font-size: 0.62rem;
+        padding: 0.25rem 0.65rem;
     }
 }
 
