@@ -62,3 +62,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setTimeout(type, 800);
 })();
+
+(function () {
+    var STATS_URL = 'https://portfolio.dimasqiramadhani.com/api/stats/';
+
+    function fmt(value, threshold) {
+        if (value >= threshold) return value + '+';
+        return String(value);
+    }
+
+    function updateStats(data) {
+        var statNums = document.querySelectorAll('.term-stat-num');
+        if (!statNums.length) return;
+
+        // Index 0: Current projects (threshold 10)
+        if (statNums[0]) statNums[0].textContent = fmt(data.projects, 10);
+
+        // Index 1: Focus areas — static, dibiarkan
+        
+        // Index 2: Core technologies / skills (threshold 20)
+        if (statNums[2]) statNums[2].textContent = fmt(data.skills, 20);
+
+        // Index 3: Years experience (threshold 2)
+        if (statNums[3]) {
+            var yr = data.experience_years < 1 ? 1 : data.experience_years;
+            statNums[3].textContent = fmt(yr, 2);
+        }
+    }
+
+    fetch(STATS_URL)
+        .then(function (r) { return r.json(); })
+        .then(function (data) { updateStats(data); })
+        .catch(function () {
+        });
+})();
