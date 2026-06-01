@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Index 1: Focus areas — static, dibiarkan
         
         // Index 2: Core technologies / skills (threshold 20)
-        if (statNums[2]) statNums[2].textContent = fmt(data.skills, 20);
+        if (statNums[2]) statNums[2].textContent = (Math.floor(data.skills / 10) * 10) + '+';
 
         // Index 3: Years experience (threshold 2)
         if (statNums[3]) {
             var yr = data.experience_years < 1 ? 1 : data.experience_years;
-            statNums[3].textContent = fmt(yr, 2);
+            statNums[3].textContent = (yr < 1 ? 1 : yr) + '+';
         }
     }
 
