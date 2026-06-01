@@ -135,7 +135,7 @@ body::after {
     width: clamp(52px, 5.5vw, 72px);
     height: clamp(52px, 5.5vw, 72px);
     border-radius: 50%;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--border);
     background: var(--bg-card-hover);
     overflow: hidden;
     display: flex;
@@ -660,6 +660,6 @@ body::after {
 /* Short landscape screens: tighten vertical rhythm */
 @media (max-height: 560px) and (min-width: 721px) {
     .status-badge { margin-bottom: 0.6rem; }
-    .bio { margin-bottom: 0.8rem; -webkit-line-clamp: 3; }
+    .bio { margin-bottom: 0.8rem; -webkit-line-clamp: 3; line-clamp: 3; }
     .btn-portfolio { margin-bottom: 0.8rem; }
 }
