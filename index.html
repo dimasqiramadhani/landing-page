@@ -42,99 +42,142 @@
 </head>
 <body>
 
-    <!-- Main Card -->
-    <main class="card">
+    <main class="shell">
 
-        <!-- Theme Toggle -->
-        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
-            <i class="fa-solid fa-sun icon-sun"></i>
-            <i class="fa-solid fa-moon icon-moon"></i>
-        </button>
+        <!-- ============ SIDEBAR RAIL ============ -->
+        <aside class="rail">
 
-        <!-- Status Badge -->
-        <div class="status-badge">
-            <span class="status-dot"></span>
-            Open to opportunities
-        </div>
+            <!-- Profile photo. Drop a file at assets/images/profile.jpg
+                 and it appears automatically. If missing, initials show. -->
+            <div class="rail-photo">
+                <img src="assets/images/profile.jpg" alt="Dimasqi Ramadhani"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <span class="initials" style="display:none;">DR</span>
+            </div>
 
-        <!-- Avatar -->
-        <div class="avatar">
-            <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="shield-grad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#34d399"/>
-                        <stop offset="100%" stop-color="#10b981"/>
-                    </linearGradient>
-                </defs>
-                <path d="M45 8 L75 20 L75 44 Q75 68 45 78 Q15 68 15 44 L15 20 Z" fill="url(#shield-grad)"/>
-                <path d="M37 46 L43 52 L56 38" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </div>
+            <div class="rail-spacer"></div>
 
-        <!-- Identity -->
-        <h1 class="name">Dimasqi Ramadhani</h1>
-        <p class="tagline">$ whoami → Security Engineer</p>
+            <!-- Social icons -->
+            <a href="https://wa.me/6282254331579" target="_blank" rel="noopener noreferrer" class="rail-btn" aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://github.com/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="rail-btn" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="rail-btn" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="mailto:mail@dimasqiramadhani.com" class="rail-btn" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
 
-        <!-- Bio -->
-        <p class="bio">
-            Security Engineer & Full Stack Developer focused on detection engineering, vulnerability assessment, automation workflow, application security and development.
-        </p>
+            <div class="rail-divider"></div>
 
-        <hr class="divider">
+            <!-- Theme toggle -->
+            <button class="rail-btn theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+                <i class="fa-solid fa-sun icon-sun"></i>
+                <i class="fa-solid fa-moon icon-moon"></i>
+            </button>
 
-        <!-- Navigation Links -->
-        <nav class="links" aria-label="Profile links">
-            <a href="https://portfolio.dimasqiramadhani.com" class="link-btn link-btn-primary" target="_blank" rel="noopener noreferrer">
+        </aside>
+
+        <!-- ============ CONTENT ============ -->
+        <section class="content">
+          <div class="content-inner">
+
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                Open to opportunities
+            </div>
+
+            <h1 class="name">Dimasqi Ramadhani</h1>
+            <p class="tagline">$ whoami → Security Engineer</p>
+
+            <p class="bio">
+                Security Engineer & Full Stack Developer focused on detection engineering, vulnerability assessment, automation workflow, application security and development.
+            </p>
+
+            <a href="https://portfolio.dimasqiramadhani.com" class="btn-portfolio" target="_blank" rel="noopener noreferrer">
                 <i class="fa-solid fa-folder-open"></i>
                 <span>View Portfolio</span>
             </a>
-            <div class="social-row">
-                <span class="social-label">or contact directly</span>
-                <div class="social-icons">
-                    <a href="https://wa.me/6282254331579" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="WhatsApp">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <span>WhatsApp</span>
-                    </a>
-                    <a href="https://github.com/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/dimasqiramadhani" target="_blank" rel="noopener noreferrer" class="link-btn" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="mailto:mail@dimasqiramadhani.com" class="link-btn" aria-label="Email">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>Email</span>
-                    </a>
+
+            <div class="skills" aria-label="Skills">
+                <span class="skill-tag">Picus Security</span>
+                <span class="skill-tag">MITRE ATT&amp;CK</span>
+                <span class="skill-tag">Wazuh</span>
+                <span class="skill-tag">TenableOne</span>
+                <span class="skill-tag">Offensive Security</span>
+                <span class="skill-tag">Elastic</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Detection Engineering</span>
+                <span class="skill-tag">Developer</span>
+                <span class="skill-tag">Django</span>
+            </div>
+
+            <p class="copyright">&copy; <span id="year"></span> Dimasqi Ramadhani. All rights reserved.</p>
+
+          </div>
+        </section>
+
+        <!-- ============ TERMINAL PANEL (right) ============ -->
+        <aside class="panel">
+            <div class="terminal">
+                <div class="terminal-bar">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-amber"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="terminal-title">dimasqi@security:~</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">cat</span> now.txt</div>
+                    <div class="term-out">Building security focused full stack projects that turn detection, telemetry, and automation use cases into practical applications.</div>
+
+                    <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">ls</span> projects/ --featured</div>
+                    <div class="term-projects">
+                        <a href="https://portfolio.dimasqiramadhani.com/project/netflow-network-traffic-monitoring/" target="_blank" rel="noopener noreferrer" class="term-project">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                            <span class="term-project-name">netflow-network-traffic-monitoring</span>
+                            <i class="fa-solid fa-arrow-right term-project-arrow"></i>
+                        </a>
+                        <a href="https://portfolio.dimasqiramadhani.com/project/endpoint-detection-coverage/" target="_blank" rel="noopener noreferrer" class="term-project">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span class="term-project-name">endpoint-detection-coverage</span>
+                            <i class="fa-solid fa-arrow-right term-project-arrow"></i>
+                        </a>
+                        <a href="https://portfolio.dimasqiramadhani.com" target="_blank" rel="noopener noreferrer" class="term-project">
+                            <i class="fa-solid fa-satellite"></i>
+                            <span class="term-project-name">telemetry-readiness-validation</span>
+                            <i class="fa-solid fa-arrow-right term-project-arrow"></i>
+                        </a>
+                    </div>
+
+                    <div class="term-line"><span class="term-prompt">$</span> <span class="term-cmd">stats</span> --summary</div>
+                    <div class="term-stats">
+                        <div class="term-stat">
+                            <span class="term-stat-num">3</span>
+                            <span class="term-stat-label">Current projects</span>
+                        </div>
+                        <div class="term-stat">
+                            <span class="term-stat-num">2</span>
+                            <span class="term-stat-label">Focus areas</span>
+                        </div>
+                        <div class="term-stat">
+                            <span class="term-stat-num">30+</span>
+                            <span class="term-stat-label">Core technologies</span>
+                        </div>
+                        <div class="term-stat">
+                            <span class="term-stat-num">1+</span>
+                            <span class="term-stat-label">Years experience</span>
+                        </div>
+                    </div>
+
+                    <div class="term-line"><span class="term-prompt">$</span> <span class="term-caret">_</span></div>
                 </div>
             </div>
-        </nav>
-
-        <!-- Skill Tags -->
-        <div class="skills" aria-label="Skills">
-            <span class="skill-tag">Picus Security</span>
-            <span class="skill-tag">MITRE ATT&amp;CK</span>
-            <span class="skill-tag">Wazuh</span>
-            <span class="skill-tag">TenableOne</span>
-            <span class="skill-tag">Offensive Security</span>
-            <span class="skill-tag">Elastic</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Detection Engineering</span>
-            <span class="skill-tag">Developer</span>
-            <span class="skill-tag">Django</span>
-        </div>
+        </aside>
 
     </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <span>dimasqiramadhani.com</span>
-        <span class="footer-sep">·</span>
-        <span>Indonesia</span>
-        <span class="footer-sep">·</span>
-        <span id="year"></span>
-    </footer>
 
     <!-- JS -->
     <script src="assets/js/main.js"></script>

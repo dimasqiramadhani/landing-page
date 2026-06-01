@@ -19,7 +19,7 @@ window.addEventListener('storage', function(e) {
     }
 });
 
-// Footer year
+// Footer year (kept for compatibility if a #year element exists)
 document.addEventListener('DOMContentLoaded', function() {
     var yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
