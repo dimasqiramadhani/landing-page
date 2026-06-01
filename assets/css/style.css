@@ -561,6 +561,12 @@ body::after {
    RESPONSIVE — Tablet & Mobile
    ============================================ */
 
+/* Mobile photo: hidden on desktop, shown on mobile */
+.mobile-photo {
+    display: none;
+}
+
+
 /* Tablet & small laptop: drop the terminal panel, content fills */
 @media (max-width: 1024px) {
     .shell {
@@ -587,6 +593,35 @@ body::after {
 
     .bio { margin-left: auto; margin-right: auto; }
     .skills { justify-content: center; }
+
+    /* Tampilkan foto di atas konten pada mobile */
+    .mobile-photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--accent);
+        background: var(--bg-card-hover);
+        overflow: hidden;
+        margin-bottom: 1rem;
+        flex-shrink: 0;
+    }
+
+    .mobile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .mobile-photo .initials {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--accent);
+    }
 
     /* Rail becomes a footer bar */
     .rail {
