@@ -604,14 +604,12 @@ body::after {
         margin-bottom: 1rem;
         flex-shrink: 0;
     }
-
     .mobile-photo img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
     }
-
     .mobile-photo .initials {
         font-family: var(--font-heading);
         font-weight: 700;
@@ -674,6 +672,16 @@ body::after {
     .skill-tag {
         font-size: 0.62rem;
         padding: 0.25rem 0.65rem;
+    }
+    .rail-btn {
+        background: transparent;
+        border: none;
+        width: 36px;
+        height: 36px;
+    }
+    .rail-btn:hover {
+        background: transparent;
+        border: none;
     }
 }
 
