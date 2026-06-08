@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Typewriter effect
 (function() {
-    var texts = ['Security Engineer', 'Full Stack Developer'];
+    var texts = ['Security Engineer'];
     var el = document.querySelector('.tagline');
     if (!el) return;
 
