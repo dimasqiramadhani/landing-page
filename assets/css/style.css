@@ -305,7 +305,7 @@ body::before {
 }
 .btn-portfolio:hover {
     background: var(--accent-hover);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
     box-shadow: 0 8px 22px var(--accent-subtle);
 }
 .btn-portfolio i { font-size: 0.9em; }
@@ -329,7 +329,7 @@ body::before {
     color: var(--accent);
     border-color: var(--accent-border);
     background: var(--accent-subtle);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
 }
 .btn-resume i { font-size: 0.9em; }
 
@@ -442,7 +442,10 @@ body::before {
 .proj-item:hover {
     border-color: var(--accent-border);
     background: var(--bg-card-hover);
-    transform: translateX(3px);
+    /* transform: translateX(3px); */
+}
+.proj-item:hover .proj-name {
+    color: var(--accent);
 }
 .proj-icon {
     color: var(--accent);
@@ -507,7 +510,7 @@ body::before {
     color: var(--accent);
     border-color: var(--accent-border);
     background: var(--accent-subtle);
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
 }
 .social-label {
     font-family: var(--font-body);
