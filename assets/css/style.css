@@ -539,7 +539,7 @@ body::before {
     position: relative;
     z-index: 1;
     margin-top: clamp(0.3rem, 0.8vh, 0.7rem);
-    font-family: var(--font-body);
+    font-family: var(--font-mono);
     font-size: 0.66rem;
     color: var(--text-faint);
     text-align: center;
@@ -582,7 +582,8 @@ body::before {
        Lebih sehat membiarkan scroll vertikal natural di sini. */
     body {
         height: auto;
-        min-height: 100dvh;
+        min-height: 0;
+        gap: 0;
         overflow-x: hidden;
         overflow-y: visible;
         justify-content: flex-start;
@@ -657,8 +658,8 @@ body::before {
     .stat-label,
     .social-label,
     .cell-eyebrow,
-    .status-badge { font-size: 0.8rem; }
-    .tagline { font-size: 0.9; }
+    .status-badge,
+    .tagline { font-size: 0.9rem; }
     .focus-chip { font-size: 0.72rem; }
     .cell-meta { font-size: 0.68rem; }
 }
