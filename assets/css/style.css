@@ -320,7 +320,7 @@ body::before {
     font-size: clamp(0.87rem, 0.9vw + 0.18vh, 0.98rem);
     font-weight: 600;
     color: var(--text);
-    background: var(--bg-rail);
+    background: var(--bg-card-hover);
     border: 1px solid var(--border);
     border-radius: var(--radius-sm);
     text-decoration: none;
@@ -328,9 +328,8 @@ body::before {
 }
 .btn-resume:hover {
     color: var(--accent);
-    border-color: var(--accent-border);
+    border-color: var(--accent);
     background: var(--accent-subtle);
-    /* transform: translateY(-2px); */
 }
 .btn-resume i { font-size: 0.9em; }
 
@@ -470,7 +469,7 @@ body::before {
     transition: color 0.2s ease, transform 0.2s ease;
     flex-shrink: 0;
 }
-.proj-item:hover .proj-arrow { color: var(--accent); transform: translateX(2px); }
+.proj-item:hover .proj-arrow { color: var(--accent); }
 
 /* =====================================================
    SOCIAL + THEME
