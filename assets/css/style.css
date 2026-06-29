@@ -234,7 +234,7 @@ body::before {
 
 .name {
     font-family: var(--font-heading);
-    font-size: clamp(2.1rem, 2.6vw + 0.8vh, 3.1rem);
+    font-size: clamp(2.5rem, 2.6vw + 0.8vh, 3.1rem);
     font-weight: 700;
     letter-spacing: -0.5px;
     line-height: 1.05;
@@ -539,7 +539,7 @@ body::before {
     position: relative;
     z-index: 1;
     margin-top: auto;
-    font-family: var(--font-mono);
+    font-family: var(--font-body);
     font-size: 0.66rem;
     color: var(--text-faint);
     text-align: center;
@@ -663,7 +663,7 @@ body::before {
     .stat-label,
     .social-label,
     .cell-eyebrow,
-    .status-badge,
+    .status-badge { font-size: 0.8rem; }
     .tagline { font-size: 0.9rem; }
     .focus-chip { font-size: 0.72rem; }
     .cell-meta { font-size: 0.68rem; }
