@@ -75,18 +75,23 @@ document.addEventListener('DOMContentLoaded', function() {
         var statNums = document.querySelectorAll('.term-stat-num');
         if (!statNums.length) return;
 
-        // Index 0: Current projects (threshold 10)
-        if (statNums[0]) statNums[0].textContent = data.projects < 10 ? String(data.projects) : (data.projects % 10 === 0 ? String(data.projects) : (Math.floor(data.projects / 10) * 10) + '+');
+        // Index 0: Current projects — show exact number
+        if (statNums[0]) statNums[0].textContent = String(data.projects);
 
-        // Index 1: Focus areas — static, dibiarkan
-        
-        // Index 2: Core technologies / skills (threshold 20)
-        if (statNums[2]) statNums[2].textContent = data.skills < 10 ? String(data.skills) : (data.skills % 10 === 0 ? String(data.skills) : (Math.floor(data.skills / 10) * 10) + '+');
+        // Index 1: Core technologies / skills — threshold at 10s
+        if (statNums[1]) {
+            var s = data.skills;
+            statNums[1].textContent = s < 10 ? String(s) :
+                (s % 10 === 0 ? String(s) : (Math.floor(s / 10) * 10) + '+');
+        }
 
-        // Index 3: Years experience (threshold 2)
-        if (statNums[3]) {
-            var yr = data.experience_years < 1 ? 1 : data.experience_years;
-            statNums[3].textContent = data.experience_months % 12 === 0 ? String(Math.max(1, data.experience_years)) : Math.max(1, data.experience_years) + '+';
+        // Index 2: Years experience — derived from experience_months
+        if (statNums[2]) {
+            var months = data.experience_months || 0;
+            var years = Math.floor(months / 12);
+            if (years < 1) years = 1;
+            var remainder = months % 12;
+            statNums[2].textContent = remainder === 0 ? String(years) : years + '+';
         }
     }
 
