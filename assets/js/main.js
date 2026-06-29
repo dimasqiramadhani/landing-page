@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 });
 
-// Typewriter effect
+// Typewriter effect (on the role only — prefix "$ whoami" and the green dot
+// stay static, matching the portfolio CMS hero style)
 (function() {
     var texts = ['Security Engineer'];
-    var el = document.querySelector('.tagline');
+    var el = document.querySelector('.tagline-role');
     if (!el) return;
 
-    var prefix = '$ whoami → ';
     var current = 0;
     var charIndex = 0;
     var deleting = false;
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function type() {
         var text = texts[current];
         if (!deleting) {
-            el.textContent = prefix + text.slice(0, charIndex + 1);
+            el.textContent = text.slice(0, charIndex + 1);
             charIndex++;
             if (charIndex === text.length) {
                 deleting = true;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
         } else {
-            el.textContent = prefix + text.slice(0, charIndex - 1);
+            el.textContent = text.slice(0, charIndex - 1);
             charIndex--;
             if (charIndex === 0) {
                 deleting = false;
