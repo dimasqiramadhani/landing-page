@@ -100,14 +100,12 @@ body::before {
     z-index: 1;
     width: 100%;
     max-width: 1000px;
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     min-height: 0;
     display: grid;
     gap: clamp(0.6rem, 1.3vmin, 1rem);
+    align-content: start;
 
-    /* Airy 2-column. Rows size to their content so the grid is exactly as
-       tall as it needs to be — no stretching, no leftover space pushing the
-       copyright away from the cards. */
     grid-template-columns: 1.45fr 1fr;
     grid-template-rows: auto auto auto auto;
     grid-template-areas:
@@ -540,6 +538,7 @@ body::before {
     grid-area: copy;
     position: relative;
     z-index: 1;
+    margin-top: auto;
     font-family: var(--font-mono);
     font-size: 0.66rem;
     color: var(--text-faint);
@@ -596,6 +595,7 @@ body::before {
         flex: 0 1 auto;
         width: 100%;
         max-width: min(460px, 100%);
+        align-content: normal;
         grid-template-columns: 1fr;
         grid-template-rows: none;
         grid-auto-rows: auto;
@@ -607,6 +607,7 @@ body::before {
             "soc"
             "copy";
     }
+    .copyright { margin-top: 0; }
     .cell-hero { text-align: left; }
     .hero-top {
         flex-direction: row;
