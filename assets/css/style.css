@@ -182,6 +182,7 @@ body::before {
     grid-area: hero;
     justify-content: center;
     gap: 0.7rem;
+    position: relative;
 }
 .hero-top {
     display: flex;
@@ -525,6 +526,7 @@ body::before {
     grid-column: 1 / -1;
     flex-direction: row;
     gap: 0.55rem;
+    display: none; /* hidden — theme toggle moved to hero card corner */
 }
 .theme-btn .icon-sun,
 .theme-btn .icon-moon { transition: opacity 0.2s ease, transform 0.3s ease; }
@@ -533,6 +535,33 @@ body::before {
 [data-theme="dark"] .theme-btn .theme-label-light { display: none; }
 [data-theme="light"] .theme-btn .icon-sun { display: none; }
 [data-theme="light"] .theme-btn .theme-label-dark { display: none; }
+
+/* Hero corner theme toggle */
+.hero-theme-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 26px;
+    height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg-rail);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    z-index: 2;
+}
+.hero-theme-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent-border);
+    background: var(--accent-subtle);
+}
+[data-theme="dark"] .hero-theme-btn .icon-moon { display: none; }
+[data-theme="light"] .hero-theme-btn .icon-sun { display: none; }
 
 /* =====================================================
    COPYRIGHT
