@@ -441,7 +441,7 @@ body::before {
 }
 .proj-item:hover {
     border-color: var(--accent-border);
-    background: var(--bg-card-hover);
+    background: var(--accent-subtle);
     /* transform: translateX(3px); */
 }
 .proj-item:hover .proj-name {
