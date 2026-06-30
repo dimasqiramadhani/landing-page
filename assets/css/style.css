@@ -696,6 +696,6 @@ body::before {
     .cell-eyebrow,
     .status-badge { font-size: 0.8rem; }
     .tagline { font-size: 0.9rem; }
-    .focus-chip { font-size: 0.72rem; }
+    .focus-chip { font-size: 0.67rem; }
     .cell-meta { font-size: 0.68rem; }
 }
