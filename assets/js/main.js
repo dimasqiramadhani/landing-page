@@ -32,6 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
     var el = document.querySelector('.tagline-role');
     if (!el) return;
 
+    // Respect reduced-motion: keep the role static instead of animating.
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) {
+        el.textContent = texts[0];
+        return;
+    }
+
     var current = 0;
     var charIndex = 0;
     var deleting = false;
@@ -66,38 +73,47 @@ document.addEventListener('DOMContentLoaded', function() {
 (function () {
     var STATS_URL = 'https://portfolio.dimasqiramadhani.com/api/stats/';
 
-    function fmt(value, threshold) {
-        if (value >= threshold) return value + '+';
-        return String(value);
-    }
-
     function updateStats(data) {
-        var statNums = document.querySelectorAll('.term-stat-num');
-        if (!statNums.length) return;
+        // Anchor by data-stat attribute (order-independent, resilient to markup changes).
+        var projectsEl = document.querySelector('[data-stat="projects"]');
+        var skillsEl = document.querySelector('[data-stat="skills"]');
+        var expEl = document.querySelector('[data-stat="experience"]');
 
-        // Index 0: Current projects — show exact number
-        if (statNums[0]) statNums[0].textContent = String(data.projects);
+        // Current projects — show exact number
+        if (projectsEl && data.projects != null) {
+            projectsEl.textContent = String(data.projects);
+        }
 
-        // Index 1: Core technologies / skills — threshold at 10s
-        if (statNums[1]) {
+        // Core technologies / skills — round down to nearest 10 with "+" past 10
+        if (skillsEl && data.skills != null) {
             var s = data.skills;
-            statNums[1].textContent = s < 10 ? String(s) :
+            skillsEl.textContent = s < 10 ? String(s) :
                 (s % 10 === 0 ? String(s) : (Math.floor(s / 10) * 10) + '+');
         }
 
-        // Index 2: Years experience — derived from experience_months
-        if (statNums[2]) {
+        // Years experience — derived from experience_months
+        if (expEl && data.experience_months != null) {
             var months = data.experience_months || 0;
             var years = Math.floor(months / 12);
             if (years < 1) years = 1;
             var remainder = months % 12;
-            statNums[2].textContent = remainder === 0 ? String(years) : years + '+';
+            expEl.textContent = remainder === 0 ? String(years) : years + '+';
         }
     }
 
-    fetch(STATS_URL)
-        .then(function (r) { return r.json(); })
+    // Abort the request if the API is slow/unreachable; static fallbacks stay visible.
+    var controller = ('AbortController' in window) ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 5000) : null;
+
+    fetch(STATS_URL, controller ? { signal: controller.signal } : undefined)
+        .then(function (r) {
+            if (timer) clearTimeout(timer);
+            if (!r.ok) throw new Error('bad status');
+            return r.json();
+        })
         .then(function (data) { updateStats(data); })
         .catch(function () {
+            if (timer) clearTimeout(timer);
+            // Silent: keep the static numbers already rendered in HTML.
         });
 })();

@@ -8,12 +8,23 @@
     <meta name="author" content="Dimasqi Ramadhani">
     <meta name="robots" content="index, follow">
 
+    <link rel="canonical" href="https://dimasqiramadhani.com/">
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Dimasqi Ramadhani · Security Engineer & Full Stack Developer">
+    <meta property="og:title" content="Dimasqi Ramadhani · Security Engineer">
     <meta property="og:description" content="Security Engineer focused on detection engineering, vulnerability assessment, automation workflow, and application security.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dimasqiramadhani.com">
+    <meta property="og:url" content="https://dimasqiramadhani.com/">
     <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Dimasqi Ramadhani">
+    <meta property="og:image" content="https://dimasqiramadhani.com/assets/images/profile.jpg">
+    <meta property="og:image:alt" content="Dimasqi Ramadhani — Security Engineer">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Dimasqi Ramadhani · Security Engineer">
+    <meta name="twitter:description" content="Security Engineer focused on detection engineering, vulnerability assessment, automation workflow, and application security.">
+    <meta name="twitter:image" content="https://dimasqiramadhani.com/assets/images/profile.jpg">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,14 +39,18 @@
     <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png">
     <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
 
+    <!-- PWA manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#10b981">
+
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=20260629f">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260803a">
 
     <!-- Theme init (prevent flash) -->
     <script>
         (function() {
             var cookie = document.cookie.match(/theme=([^;]+)/);
-            var saved = (cookie ? cookie[1] : null) || localStorage.getItem('theme') || 'light';
+            var saved = (cookie ? cookie[1] : null) || localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', saved);
         })();
     </script>
@@ -47,7 +62,7 @@
         <!-- ============ HERO (profil + bio + CTA) ============ -->
         <section class="cell cell-hero" aria-labelledby="hero-name">
             <!-- Theme toggle — top-right corner of the hero card -->
-            <button class="hero-theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+            <button class="hero-theme-btn" onclick="toggleTheme()" aria-label="Toggle color theme">
                 <i class="fa-solid fa-sun icon-sun"></i>
                 <i class="fa-solid fa-moon icon-moon"></i>
             </button>
@@ -65,7 +80,7 @@
             </div>
 
             <h1 class="name" id="hero-name">Dimasqi Ramadhani</h1>
-            <p class="tagline"><span class="tagline-prefix">$ whoami</span><span class="tagline-dot"></span><span class="tagline-role">Security Engineer</span></p>
+            <p class="tagline"><span class="tagline-prefix">$ whoami</span><span class="tagline-dot"></span><span class="tagline-role" aria-hidden="true">Security Engineer</span><span class="sr-only">Security Engineer</span></p>
 
             <p class="bio">
                 Security Engineer focused on detection engineering, vulnerability assessment, automation workflow, and application security.
@@ -95,7 +110,7 @@
             </p>
             <div class="now-focus">
                 <span class="focus-chip"><i class="fa-solid fa-shield-halved"></i> Detection</span>
-                <span class="focus-chip"><i class="fa-solid fa-magnifying-glass-chart"></i> vulnerability</span>
+                <span class="focus-chip"><i class="fa-solid fa-magnifying-glass-chart"></i> Vulnerability</span>
                 <span class="focus-chip"><i class="fa-solid fa-robot"></i> Automation</span>
             </div>
         </section>
@@ -103,7 +118,7 @@
         <!-- ============ STATS (4 kartu) ============ -->
         <section class="cell-stats" aria-label="Summary stats">
             <div class="stat">
-                <span class="term-stat-num stat-num">3</span>
+                <span class="term-stat-num stat-num" data-stat="projects">3</span>
                 <span class="stat-label">Current projects</span>
             </div>
             <div class="stat">
@@ -111,11 +126,11 @@
                 <span class="stat-label">Focus areas</span>
             </div>
             <div class="stat">
-                <span class="term-stat-num stat-num">30+</span>
+                <span class="term-stat-num stat-num" data-stat="skills">30+</span>
                 <span class="stat-label">Core technologies</span>
             </div>
             <div class="stat">
-                <span class="term-stat-num stat-num">1+</span>
+                <span class="term-stat-num stat-num" data-stat="experience">1+</span>
                 <span class="stat-label">Years experience</span>
             </div>
         </section>
@@ -168,7 +183,7 @@
                     <i class="fa-solid fa-envelope"></i>
                     <span class="social-label">Email</span>
                 </a>
-                <button class="social-btn theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+                <button class="social-btn theme-btn" onclick="toggleTheme()" aria-label="Toggle color theme (footer)">
                     <i class="fa-solid fa-sun icon-sun"></i>
                     <i class="fa-solid fa-moon icon-moon"></i>
                     <span class="social-label theme-label">
@@ -184,7 +199,25 @@
 
     </main>
 
+    <!-- Structured data (schema.org/Person) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Dimasqi Ramadhani",
+        "url": "https://dimasqiramadhani.com/",
+        "image": "https://dimasqiramadhani.com/assets/images/profile.jpg",
+        "jobTitle": "Security Engineer",
+        "email": "mailto:mail@dimasqiramadhani.com",
+        "description": "Security Engineer focused on detection engineering, vulnerability assessment, automation workflow, and application security.",
+        "sameAs": [
+            "https://github.com/dimasqiramadhani",
+            "https://linkedin.com/in/dimasqiramadhani"
+        ]
+    }
+    </script>
+
     <!-- JS -->
-    <script src="assets/js/main.js?v=20260629f"></script>
+    <script src="assets/js/main.js?v=20260803a"></script>
 </body>
 </html>

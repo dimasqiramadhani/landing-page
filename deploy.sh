@@ -30,17 +30,21 @@ mkdir -p "$PURGE_DIR" 2>/dev/null || true
 # PHP trigger (works on shared cPanel where shell purge tools are absent).
 cat > "$SITE_DIR/_purge.php" << 'PHP_EOF'
 <?php
-// One-shot LiteSpeed purge trigger. Hit this URL once after deploy.
+// One-shot LiteSpeed purge trigger. Self-deletes after firing so it is
+// never left reachable on the web root (avoids cache-purge abuse).
 header('X-LiteSpeed-Purge: *');
 echo 'LiteSpeed cache purged at ' . date('c');
+@unlink(__FILE__);
 PHP_EOF
-echo "    -> Created _purge.php. It will be requested automatically below."
+echo "    -> Created one-shot _purge.php (self-deletes after first request)."
 # Method 3: actually fire the purge by requesting the trigger over HTTP.
 if command -v curl >/dev/null 2>&1; then
     curl -s "https://dimasqiramadhani.com/_purge.php" >/dev/null 2>&1 \
         && echo "    -> Purge trigger fired successfully." \
         || echo "    -> Could not reach purge URL; visit it manually once."
 fi
+# Safety net: remove the trigger locally in case the HTTP request did not run it.
+rm -f "$SITE_DIR/_purge.php" 2>/dev/null || true
 
 echo ""
 echo "[3/3] Done!"
