@@ -1,8 +1,28 @@
 # =============================================================
-# .htaccess — cache control + hardening for LiteSpeed / Apache
-# Goal: HTML always fresh, versioned assets (?v=) cached long,
-# sensitive files blocked, baseline security headers set.
+# .htaccess — canonical redirects + cache control + hardening
+# for LiteSpeed / Apache
+# Goal: force ONE canonical origin (https + non-www), keep HTML
+# fresh, cache versioned assets (?v=) long, block sensitive files,
+# set baseline security headers.
 # =============================================================
+
+# --- Canonical host: force HTTPS and non-www (301) ---
+# Consolidates http://, http://www, https://www into the single
+# canonical https://dimasqiramadhani.com/ so Search Console stops
+# reporting duplicate URLs and link equity is not split.
+# NOTE: this block must run before the dotfile/deny rules below.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # 1) Force HTTPS (covers plain http:// requests)
+    RewriteCond %{HTTPS} !=on [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} =http
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 2) Force non-www (strip a leading www.)
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+</IfModule>
 
 # --- Do NOT let LiteSpeed cache the HTML pages ---
 # This is what caused production to keep showing the old layout:
