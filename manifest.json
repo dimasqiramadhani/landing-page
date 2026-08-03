@@ -33,11 +33,11 @@
             "sizes": "1920x869",
             "type": "image/png",
             "form_factor": "wide",
-            "label": "Dimasqi Ramadhani · Security Engineer landing page (desktop)"
+            "label": "Dimasqi Ramadhani · Security Engineer landing page"
         },
         {
             "src": "/assets/images/screenshot-mobile.png",
-            "sizes": "538x1440",
+            "sizes": "538x753",
             "type": "image/png",
             "form_factor": "narrow",
             "label": "Dimasqi Ramadhani · Security Engineer landing page (mobile)"
