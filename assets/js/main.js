@@ -28,9 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Typewriter effect (on the role only — prefix "$ whoami" and the green dot
 // stay static, matching the portfolio CMS hero style)
 (function() {
-    var texts = ['Security Engineer'];
     var el = document.querySelector('.tagline-role');
     if (!el) return;
+
+    // Read the role out of the markup instead of repeating it here. The two
+    // used to be separate: the HTML said one thing, this array said another,
+    // and because the animation overwrites the element the array always won.
+    // That left sighted visitors reading the old title while the .sr-only span
+    // announced the new one to screen readers — the page contradicting itself.
+    var texts = [el.textContent.trim()];
+    if (!texts[0]) return;
 
     // Respect reduced-motion: keep the role static instead of animating.
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
