@@ -78,27 +78,39 @@ document.addEventListener('DOMContentLoaded', function() {
 })();
 
 (function () {
-    var STATS_URL = 'https://portfolio.dimasqiramadhani.com/api/stats/';
+    var BASE_URL = 'https://portfolio.dimasqiramadhani.com';
+    var STATS_URL = BASE_URL + '/api/stats/';
+    var PROJECTS_URL = BASE_URL + '/api/projects/';
 
+    // ---- Category icon mapping ----
+    var CATEGORY_ICONS = {
+        'Detection Engineering': 'fa-solid fa-shield-halved',
+        'Project Implementation': 'fa-solid fa-cubes',
+        'Offensive Security': 'fa-solid fa-skull-crossbones',
+        'Vulnerability Assessment': 'fa-solid fa-magnifying-glass-chart',
+        'Threat Intelligence': 'fa-solid fa-brain',
+        'Log Management': 'fa-solid fa-circle-nodes',
+        'Digital Forensic': 'fa-solid fa-fingerprint',
+        'Automation Engine': 'fa-solid fa-robot',
+        'Other': 'fa-solid fa-folder'
+    };
+
+    // ---- Stats sync ----
     function updateStats(data) {
-        // Anchor by data-stat attribute (order-independent, resilient to markup changes).
         var projectsEl = document.querySelector('[data-stat="projects"]');
         var skillsEl = document.querySelector('[data-stat="skills"]');
         var expEl = document.querySelector('[data-stat="experience"]');
 
-        // Current projects — show exact number
         if (projectsEl && data.projects != null) {
             projectsEl.textContent = String(data.projects);
         }
 
-        // Core technologies / skills — round down to nearest 10 with "+" past 10
         if (skillsEl && data.skills != null) {
             var s = data.skills;
             skillsEl.textContent = s < 10 ? String(s) :
                 (s % 10 === 0 ? String(s) : (Math.floor(s / 10) * 10) + '+');
         }
 
-        // Years experience — derived from experience_months
         if (expEl && data.experience_months != null) {
             var months = data.experience_months || 0;
             var years = Math.floor(months / 12);
@@ -108,19 +120,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Abort the request if the API is slow/unreachable; static fallbacks stay visible.
-    var controller = ('AbortController' in window) ? new AbortController() : null;
-    var timer = controller ? setTimeout(function () { controller.abort(); }, 5000) : null;
+    // ---- Dynamic project list ----
+    function renderProjects(projects) {
+        var container = document.getElementById('proj-list');
+        if (!container || !projects || !projects.length) return;
 
-    fetch(STATS_URL, controller ? { signal: controller.signal } : undefined)
-        .then(function (r) {
-            if (timer) clearTimeout(timer);
-            if (!r.ok) throw new Error('bad status');
-            return r.json();
-        })
-        .then(function (data) { updateStats(data); })
-        .catch(function () {
-            if (timer) clearTimeout(timer);
-            // Silent: keep the static numbers already rendered in HTML.
-        });
+        var html = '';
+        for (var i = 0; i < projects.length; i++) {
+            var p = projects[i];
+            var icon = CATEGORY_ICONS[p.category] || CATEGORY_ICONS['Other'];
+            var url = BASE_URL + '/project/' + p.slug + '/';
+            html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="proj-item">'
+                  + '<i class="' + icon + ' proj-icon"></i>'
+                  + '<span class="proj-name">' + p.slug + '</span>'
+                  + '<i class="fa-solid fa-arrow-right proj-arrow"></i>'
+                  + '</a>';
+        }
+        container.innerHTML = html;
+    }
+
+    // ---- Shared fetch helper with 5s timeout ----
+    function fetchJSON(url, callback) {
+        var controller = ('AbortController' in window) ? new AbortController() : null;
+        var timer = controller ? setTimeout(function () { controller.abort(); }, 5000) : null;
+
+        fetch(url, controller ? { signal: controller.signal } : undefined)
+            .then(function (r) {
+                if (timer) clearTimeout(timer);
+                if (!r.ok) throw new Error('bad status');
+                return r.json();
+            })
+            .then(function (data) { callback(data); })
+            .catch(function () {
+                if (timer) clearTimeout(timer);
+                // Silent: keep static fallbacks visible.
+            });
+    }
+
+    fetchJSON(STATS_URL, updateStats);
+    fetchJSON(PROJECTS_URL, renderProjects);
 })();

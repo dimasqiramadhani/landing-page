@@ -119,7 +119,7 @@
         <!-- ============ STATS (4 kartu) ============ -->
         <section class="cell-stats" aria-label="Summary stats">
             <div class="stat">
-                <span class="term-stat-num stat-num" data-stat="projects">3</span>
+                <span class="term-stat-num stat-num" data-stat="projects">4</span>
                 <span class="stat-label">Current projects</span>
             </div>
             <div class="stat">
@@ -136,14 +136,15 @@
             </div>
         </section>
 
-        <!-- ============ PROJECTS (kartu biasa) ============ -->
+        <!-- ============ PROJECTS (dinamis dari API, fallback statis) ============ -->
         <section class="cell cell-projects" aria-labelledby="proj-title">
             <div class="cell-head">
                 <span class="cell-eyebrow"><i class="fa-solid fa-folder-tree"></i> projects</span>
                 <span class="cell-meta">~/highlights</span>
             </div>
             <h2 class="sr-only" id="proj-title">Highlighted projects</h2>
-            <div class="proj-list">
+            <div class="proj-list" id="proj-list">
+                <!-- Fallback statis — ditimpa oleh JS jika API tersedia -->
                 <a href="https://portfolio.dimasqiramadhani.com/project/netflow-network-traffic-monitoring/" target="_blank" rel="noopener noreferrer" class="proj-item">
                     <i class="fa-solid fa-circle-nodes proj-icon"></i>
                     <span class="proj-name">netflow-network-traffic-monitoring</span>
