@@ -50,32 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Typewriter effect (on the role only — prefix "$ whoami" and the green dot
-// stay static, matching the portfolio CMS hero style)
-(function() {
+// stay static, matching the portfolio CMS hero style).
+// The roles come from the portfolio's About headline (comma-separated, via
+// /api/profile/); the markup text is only the fallback until/unless it answers.
+var landingTypewriter = (function() {
     var el = document.querySelector('.tagline-role');
-    if (!el) return;
+    if (!el) return { setRoles: function () {} };
 
-    // Read the role out of the markup instead of repeating it here. The two
-    // used to be separate: the HTML said one thing, this array said another,
-    // and because the animation overwrites the element the array always won.
-    // That left sighted visitors reading the old title while the .sr-only span
-    // announced the new one to screen readers — the page contradicting itself.
+    var srEl = el.nextElementSibling;
     var texts = [el.textContent.trim()];
-    if (!texts[0]) return;
-
-    // Respect reduced-motion: keep the role static instead of animating.
+    var current = 0, charIndex = 0, deleting = false, timer = null;
+    var pauseTime = 1800, typeSpeed = 80, deleteSpeed = 40;
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) {
-        el.textContent = texts[0];
-        return;
-    }
-
-    var current = 0;
-    var charIndex = 0;
-    var deleting = false;
-    var pauseTime = 1800;
-    var typeSpeed = 80;
-    var deleteSpeed = 40;
 
     function type() {
         var text = texts[current];
@@ -84,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             charIndex++;
             if (charIndex === text.length) {
                 deleting = true;
-                setTimeout(type, pauseTime);
+                timer = setTimeout(type, pauseTime);
                 return;
             }
         } else {
@@ -95,10 +81,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 current = (current + 1) % texts.length;
             }
         }
-        setTimeout(type, deleting ? deleteSpeed : typeSpeed);
+        timer = setTimeout(type, deleting ? deleteSpeed : typeSpeed);
     }
 
-    setTimeout(type, 800);
+    function start() {
+        clearTimeout(timer);
+        current = 0; charIndex = 0; deleting = false;
+        if (!texts[0]) return;
+        if (reduce) { el.textContent = texts[0]; return; }  // keep static
+        timer = setTimeout(type, 800);
+    }
+
+    start();
+
+    return {
+        setRoles: function (roles) {
+            if (!roles || !roles.length) return;
+            var clean = [];
+            for (var i = 0; i < roles.length; i++) {
+                if (typeof roles[i] === 'string' && roles[i].trim()) clean.push(roles[i].trim());
+            }
+            if (!clean.length || clean.join('|') === texts.join('|')) return;
+            texts = clean;
+            // Screen readers get the full list, sighted visitors the animation.
+            if (srEl && srEl.classList.contains('sr-only')) srEl.textContent = clean.join(', ');
+            el.textContent = '';
+            start();
+        }
+    };
 })();
 
 (function () {
@@ -178,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // stays in the markup as the fallback (offline, API down, no photo set);
     // once the portfolio answers with a photo, the <img> is switched to it.
     function updateProfilePhoto(data) {
+        if (data && data.roles) landingTypewriter.setRoles(data.roles);
         var img = document.querySelector('.hero-photo img');
         var url = data && data.profile_image;
         if (!img || typeof url !== 'string') return;
