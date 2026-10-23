@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var BASE_URL = 'https://portfolio.dimasqiramadhani.com';
     var STATS_URL = BASE_URL + '/api/stats/';
     var PROJECTS_URL = BASE_URL + '/api/projects/';
+    var MAX_HIGHLIGHTS = 3;
     var PROFILE_URL = BASE_URL + '/api/profile/';
 
     // ---- Category icon mapping ----
@@ -127,9 +128,16 @@ document.addEventListener('DOMContentLoaded', function() {
         var container = document.getElementById('proj-list');
         if (!container || !projects || !projects.length) return;
 
+        // "Highlights" shows at most MAX_HIGHLIGHTS projects: featured ones
+        // first, then the newest (the API already sorts newest first).
+        // The "Current projects" counter above still shows the full total.
+        var ordered = projects.filter(function (x) { return x.featured; })
+            .concat(projects.filter(function (x) { return !x.featured; }))
+            .slice(0, MAX_HIGHLIGHTS);
+
         var html = '';
-        for (var i = 0; i < projects.length; i++) {
-            var p = projects[i];
+        for (var i = 0; i < ordered.length; i++) {
+            var p = ordered[i];
             var icon = CATEGORY_ICONS[p.category] || CATEGORY_ICONS['Other'];
             var url = BASE_URL + '/project/' + p.slug + '/';
             html += '<a href="' + url + '" target="_blank" rel="noopener noreferrer" class="proj-item">'
