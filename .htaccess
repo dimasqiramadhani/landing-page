@@ -69,8 +69,9 @@ RedirectMatch 404 /\.git
     # HSTS: enable only if the whole domain is HTTPS-only (it is here).
     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
     # CSP: allows self + the two external CDNs this page relies on
-    # (Google Fonts + Font Awesome) and the portfolio stats API.
-    Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://portfolio.dimasqiramadhani.com; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    # (Google Fonts + Font Awesome), the portfolio API, and the profile photo
+    # served from the portfolio (img-src).
+    Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://portfolio.dimasqiramadhani.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://portfolio.dimasqiramadhani.com; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
 </IfModule>
 
 # --- Optional: gzip/deflate for faster delivery ---

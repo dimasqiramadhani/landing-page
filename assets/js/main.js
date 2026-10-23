@@ -81,13 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var BASE_URL = 'https://portfolio.dimasqiramadhani.com';
     var STATS_URL = BASE_URL + '/api/stats/';
     var PROJECTS_URL = BASE_URL + '/api/projects/';
+    var PROFILE_URL = BASE_URL + '/api/profile/';
 
     // ---- Category icon mapping ----
     var CATEGORY_ICONS = {
         'Detection Engineering': 'fa-solid fa-shield-halved',
         'Project Implementation': 'fa-solid fa-cubes',
         'Offensive Security': 'fa-solid fa-skull-crossbones',
-        'Vulnerability Assessment': 'fa-solid fa-magnifying-glass-chart',
+        'Vulnerability Management': 'fa-solid fa-magnifying-glass-chart',
+        'Infrastructure Security': 'fa-solid fa-server',
         'Threat Intelligence': 'fa-solid fa-brain',
         'Log Management': 'fa-solid fa-circle-nodes',
         'Digital Forensic': 'fa-solid fa-fingerprint',
@@ -139,6 +141,31 @@ document.addEventListener('DOMContentLoaded', function() {
         container.innerHTML = html;
     }
 
+    // ---- Profile photo sync ----
+    // The photo lives in the portfolio's management panel. assets/images/profile.jpg
+    // stays in the markup as the fallback (offline, API down, no photo set);
+    // once the portfolio answers with a photo, the <img> is switched to it.
+    function updateProfilePhoto(data) {
+        var img = document.querySelector('.hero-photo img');
+        var url = data && data.profile_image;
+        if (!img || typeof url !== 'string') return;
+        // Only ever load the photo from the portfolio itself.
+        if (url.indexOf(BASE_URL + '/') !== 0) return;
+        if (img.getAttribute('src') === url) return;
+
+        // Preload first so a failed or slow image never replaces a working one.
+        var probe = new Image();
+        probe.onload = function () {
+            img.src = url;
+            img.style.display = '';
+            var initials = img.nextElementSibling;
+            if (initials && initials.classList.contains('initials')) {
+                initials.style.display = 'none';
+            }
+        };
+        probe.src = url;
+    }
+
     // ---- Shared fetch helper with 5s timeout ----
     function fetchJSON(url, callback) {
         var controller = ('AbortController' in window) ? new AbortController() : null;
@@ -159,4 +186,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchJSON(STATS_URL, updateStats);
     fetchJSON(PROJECTS_URL, renderProjects);
+    fetchJSON(PROFILE_URL, updateProfilePhoto);
 })();

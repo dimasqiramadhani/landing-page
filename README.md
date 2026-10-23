@@ -23,6 +23,16 @@ landing-page/
 2. Pastikan `index.html` ada di root folder
 3. Tidak perlu server-side setup — pure static HTML/CSS/JS
 
+## Foto profil (otomatis)
+
+Foto di hero diambil dari portfolio lewat `https://portfolio.dimasqiramadhani.com/api/profile/`.
+Ganti foto profil di management panel portfolio (About), dan landing page ikut berubah
+dalam beberapa menit (cache API 5 menit). `assets/images/profile.jpg` tetap dipakai sebagai
+cadangan kalau portfolio tidak bisa dijangkau atau belum ada foto.
+
+Catatan: tag `og:image` / `twitter:image` dan JSON-LD tetap menunjuk ke `assets/images/profile.jpg`
+karena crawler tidak menjalankan JavaScript. Ganti file itu manual kalau mau preview share ikut berubah.
+
 ## Kustomisasi
 
 - **Portfolio URL**: Ubah `https://portfolio.dimasqiramadhani.com` di `index.html`
