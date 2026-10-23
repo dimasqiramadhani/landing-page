@@ -163,6 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 initials.style.display = 'none';
             }
         };
+        // Silent for visitors (the local photo simply stays), but leave a hint
+        // in the console: a blocked image (CSP img-src) lands here too.
+        probe.onerror = function () {
+            if (window.console && console.warn) {
+                console.warn('Profile photo could not be loaded from', url);
+            }
+        };
         probe.src = url;
     }
 
