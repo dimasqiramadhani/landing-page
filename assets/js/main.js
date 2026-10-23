@@ -1,5 +1,5 @@
 // ============================================
-// Landing Page — Dimasqi Ramadhani
+// Landing Page - Dimasqi Ramadhani
 // ============================================
 
 // Theme toggle
