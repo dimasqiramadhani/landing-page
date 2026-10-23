@@ -1,5 +1,5 @@
 // ============================================
-// Landing Page - Dimasqi Ramadhani
+// Landing Page — Dimasqi Ramadhani
 // ============================================
 
 // Theme toggle
@@ -9,8 +9,32 @@ function toggleTheme() {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     // Sync lintas subdomain via cookie
-    document.cookie = 'theme=' + next + ';domain=.dimasqiramadhani.com;path=/;max-age=31536000';
+    writeThemeCookie(next);
 }
+
+function writeThemeCookie(value) {
+    var c = 'theme=' + value + ';domain=.dimasqiramadhani.com;path=/;max-age=31536000;SameSite=Lax';
+    if (location.protocol === 'https:') c += ';Secure';
+    document.cookie = c;
+}
+
+// The theme follows the portfolio: the cookie is shared by both subdomains
+// and wins over this page's own localStorage. Re-read it whenever the page
+// becomes visible again (tab switch, back/forward cache) so a change made on
+// the portfolio shows up without a manual reload.
+function syncThemeFromCookie() {
+    var m = document.cookie.match(/(?:^|;\s*)theme=([^;]+)/);
+    if (m && (m[1] === 'dark' || m[1] === 'light') &&
+        document.documentElement.getAttribute('data-theme') !== m[1]) {
+        document.documentElement.setAttribute('data-theme', m[1]);
+        try { localStorage.setItem('theme', m[1]); } catch (e) {}
+    }
+}
+document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) syncThemeFromCookie();
+});
+window.addEventListener('pageshow', syncThemeFromCookie);
+window.addEventListener('focus', syncThemeFromCookie);
 
 // Cross-tab theme sync
 window.addEventListener('storage', function(e) {
