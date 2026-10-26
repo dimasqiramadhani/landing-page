@@ -30,8 +30,7 @@ Ganti foto profil di management panel portfolio (About), dan landing page ikut b
 dalam beberapa menit (cache API 5 menit). `assets/images/profile.jpg` tetap dipakai sebagai
 cadangan kalau portfolio tidak bisa dijangkau atau belum ada foto.
 
-Catatan: tag `og:image` / `twitter:image` dan JSON-LD tetap menunjuk ke `assets/images/profile.jpg`
-karena crawler tidak menjalankan JavaScript. Ganti file itu manual kalau mau preview share ikut berubah.
+Catatan: tag `og:image` / `twitter:image` dan JSON-LD menunjuk ke `assets/images/profile.jpg?v=...` (crawler tidak menjalankan JS). Ganti file itu dan naikkan nilai `?v=` di keempat tempat saat foto berubah.
 
 ## Kustomisasi
 
